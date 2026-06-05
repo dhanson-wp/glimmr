@@ -11,7 +11,7 @@ A fast, image-first photo-gallery block theme. Quiet near-monochrome chrome so t
 
 == Description ==
 
-Glimmr is a full-site-editing block theme for personal photo galleries. Near-monochrome chrome (Ink, white, Mist) keeps the photographs the only saturated thing on the page, with a hot Glimmr Pink reserved for action and focus. Square-cornered photos, a justified photostream, native lightbox on single photos, a calmer writing-forward Journal track, and a custom taxonomy featured-image control that drives each category/tag's cover hero.
+Glimmr is a block theme for personal photo galleries. Near-monochrome chrome (Ink, white, Mist) keeps the photographs the only saturated thing on the page, with a hot Glimmr Pink reserved for action and focus. Square-cornered photos, a justified photostream, native lightbox on single photos, a calmer writing-forward Journal track, and a custom taxonomy featured-image control that drives each category/tag's cover hero.
 
 Ships with six switchable style variations: Daylight (default), Midnight (dark), Silver, Sepia and Cyanotype (each a global photo duotone), and Gallery (museum white).
 

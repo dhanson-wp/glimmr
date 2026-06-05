@@ -1,6 +1,9 @@
 # Seeding scratch (demo content import staging — never part of the theme)
 /_seed/
 
+# Local design notes — kept on disk, not part of the distributed theme
+/docs/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
