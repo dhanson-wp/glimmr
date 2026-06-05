@@ -191,7 +191,8 @@
 }
 
 /* ---- Category chip bar ---------------------------------------------------- */
-.glmr-chips ul {
+/* The core/categories block puts our class on the <ul> itself. */
+ul.glmr-chips {
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
