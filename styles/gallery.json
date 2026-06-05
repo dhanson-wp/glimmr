@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Gallery",
+	"description": "Museum white. Pure-white walls, near-black chrome, generous air. No duotone — the print speaks for itself.",
+	"settings": {
+		"color": {
+			"palette": [
+				{ "slug": "mist",        "color": "#ffffff", "name": "Mist (page background)" },
+				{ "slug": "white",       "color": "#ffffff", "name": "White (surface)" },
+				{ "slug": "ink",         "color": "#101012", "name": "Ink (chrome)" },
+				{ "slug": "fg",          "color": "#101012", "name": "Foreground (body text)" },
+				{ "slug": "muted",       "color": "#6b6b6f", "name": "Muted (meta / EXIF)" },
+				{ "slug": "faint",       "color": "#9a9a9e", "name": "Faint (placeholder / disabled)" },
+				{ "slug": "on-ink",      "color": "#ffffff", "name": "On ink (text on chrome)" },
+				{ "slug": "hairline",    "color": "#ececec", "name": "Hairline (borders)" },
+				{ "slug": "pink",        "color": "#ff0084", "name": "Glimmr Pink (accent / focus / active)" },
+				{ "slug": "pink-action", "color": "#d1006e", "name": "Pink action (button bg, AA on white)" },
+				{ "slug": "blue",        "color": "#0063a8", "name": "Link blue" }
+			]
+		}
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--mist)", "text": "var(--wp--preset--color--fg)" },
+		"spacing": { "blockGap": "var(--wp--preset--spacing--50)" },
+		"elements": {
+			"heading": { "typography": { "fontWeight": "300", "letterSpacing": "-0.02em" } }
+		}
+	}
+}

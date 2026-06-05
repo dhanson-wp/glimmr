@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Daylight",
+	"description": "The default. Mist background, ink chrome, one hot pink. The photos carry all the colour.",
+	"settings": {
+		"color": {
+			"palette": [
+				{ "slug": "mist",        "color": "#f3f5f6", "name": "Mist (page background)" },
+				{ "slug": "white",       "color": "#ffffff", "name": "White (surface)" },
+				{ "slug": "ink",         "color": "#212124", "name": "Ink (chrome)" },
+				{ "slug": "fg",          "color": "#101012", "name": "Foreground (body text)" },
+				{ "slug": "muted",       "color": "#5c5c5c", "name": "Muted (meta / EXIF)" },
+				{ "slug": "faint",       "color": "#898989", "name": "Faint (placeholder / disabled)" },
+				{ "slug": "on-ink",      "color": "#f3f5f6", "name": "On ink (text on chrome)" },
+				{ "slug": "hairline",    "color": "#dddddd", "name": "Hairline (borders)" },
+				{ "slug": "pink",        "color": "#ff0084", "name": "Glimmr Pink (accent / focus / active)" },
+				{ "slug": "pink-action", "color": "#d1006e", "name": "Pink action (button bg, AA on white)" },
+				{ "slug": "blue",        "color": "#0063a8", "name": "Link blue" }
+			]
+		}
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--mist)", "text": "var(--wp--preset--color--fg)" }
+	}
+}

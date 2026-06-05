@@ -1,0 +1,17 @@
+/*
+Theme Name: Glimmr
+Theme URI: https://github.com/dhanson-wp/glimmr
+Author: Derek Hanson
+Author URI: https://derekhanson.blog
+Description: A fast, image-first photo-gallery block theme. Quiet near-monochrome chrome so the only saturated colour on the page is the photography, with a hot Glimmr Pink reserved for action and focus. Square-cornered photos, a justified photostream, a writing-forward Journal track, and six switchable moods (Daylight, Midnight, Silver, Sepia, Cyanotype, Gallery). Single-photo EXIF needs the x3p0/media-data plugin; the gallery works without it.
+Requires at least: 6.9
+Tested up to: 7.0
+Requires PHP: 8.0
+Version: 1.0.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: glimmr
+Tags: photography, portfolio, full-site-editing, block-patterns, style-variations, custom-colors, block-styles, threaded-comments
+*/
+
+/* Theme styling lives in theme.json and assets/css/glimmr.css. This file is the metadata header only. */

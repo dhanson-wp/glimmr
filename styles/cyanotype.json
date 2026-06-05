@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Cyanotype",
+	"description": "Blueprint blue. A cyanotype duotone over the photos, a cool paper page and deep-blue chrome.",
+	"settings": {
+		"color": {
+			"palette": [
+				{ "slug": "mist",        "color": "#eef3f8", "name": "Mist (page background)" },
+				{ "slug": "white",       "color": "#f7fafd", "name": "White (surface)" },
+				{ "slug": "ink",         "color": "#0a1f4a", "name": "Ink (chrome)" },
+				{ "slug": "fg",          "color": "#0a1f3a", "name": "Foreground (body text)" },
+				{ "slug": "muted",       "color": "#4a5e7e", "name": "Muted (meta / EXIF)" },
+				{ "slug": "faint",       "color": "#7d8ea8", "name": "Faint (placeholder / disabled)" },
+				{ "slug": "on-ink",      "color": "#eef3f8", "name": "On ink (text on chrome)" },
+				{ "slug": "hairline",    "color": "#cddbea", "name": "Hairline (borders)" },
+				{ "slug": "pink",        "color": "#ff0084", "name": "Glimmr Pink (accent / focus / active)" },
+				{ "slug": "pink-action", "color": "#b3005e", "name": "Pink action (button bg)" },
+				{ "slug": "blue",        "color": "#0063a8", "name": "Link blue" }
+			]
+		}
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--mist)", "text": "var(--wp--preset--color--fg)" },
+		"blocks": {
+			"core/image": { "filter": { "duotone": "var:preset|duotone|cyan" } },
+			"core/cover": { "filter": { "duotone": "var:preset|duotone|cyan" } },
+			"core/post-featured-image": { "filter": { "duotone": "var:preset|duotone|cyan" } }
+		}
+	}
+}

@@ -1,0 +1,39 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|50"}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
+	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained","contentSize":"560px"}} -->
+	<div class="wp-block-group">
+		<!-- wp:heading {"level":1,"fontSize":"xx-large"} -->
+		<h1 class="wp-block-heading has-xx-large-font-size">This page slipped out of frame.</h1>
+		<!-- /wp:heading -->
+		<!-- wp:paragraph {"textColor":"muted","fontSize":"large"} -->
+		<p class="has-muted-color has-text-color has-large-font-size">The photo or page you’re after isn’t here. Try a search, or wander back into the stream.</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search photos","buttonText":"Search","buttonPosition":"button-outside","className":"glmr-search glmr-search--page"} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignwide">
+		<!-- wp:paragraph {"className":"glmr-eyebrow","fontSize":"chip","textColor":"muted"} -->
+		<p class="glmr-eyebrow has-muted-color has-text-color has-chip-font-size">Recent photos</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:query {"queryId":2,"query":{"perPage":8,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","sticky":"","inherit":false},"align":"wide","className":"glmr-stream-wrap"} -->
+		<div class="wp-block-query glmr-stream-wrap alignwide">
+			<!-- wp:post-template {"className":"glmr-stream","layout":{"type":"grid","minimumColumnWidth":"200px"},"style":{"spacing":{"blockGap":"6px"}}} -->
+				<!-- wp:group {"className":"photo-tile","layout":{"type":"constrained"}} -->
+				<div class="wp-block-group photo-tile">
+					<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"1","className":"photo-tile__img"} /-->
+					<!-- wp:post-title {"isLink":true,"fontSize":"large","textColor":"white","className":"photo-tile__title"} /-->
+				</div>
+				<!-- /wp:group -->
+			<!-- /wp:post-template -->
+		</div>
+		<!-- /wp:query -->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

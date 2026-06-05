@@ -1,0 +1,299 @@
+/**
+ * Glimmr — theme stylesheet.
+ *
+ * Only what theme.json can't express: the justified photostream + hover scrim,
+ * the wordmark tittle, the ink nav + Albums submenu, the category chip bar, the
+ * EXIF readout and the Journal reading rhythm. Tokens come from theme.json presets.
+ * Selectors stay at 0-1-0 so Site Editor / user styles can still win.
+ */
+
+:root {
+	--glmr-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---- Wordmark: lowercase with a square pink tittle ------------------------ */
+.glmr-wordmark a,
+.glmr-wordmark {
+	text-transform: lowercase;
+	letter-spacing: -0.01em;
+	text-decoration: none;
+}
+
+.glmr-wordmark a::after {
+	content: "";
+	display: inline-block;
+	width: 0.34em;
+	height: 0.34em;
+	margin-left: 0.12em;
+	background: var(--wp--preset--color--pink);
+	vertical-align: baseline;
+}
+
+/* ---- Header chrome -------------------------------------------------------- */
+.hdr .wp-block-navigation {
+	font-size: var(--wp--preset--font-size--base);
+}
+
+.hdr .wp-block-navigation a,
+.hdr .wp-block-navigation .wp-block-navigation-item__content {
+	color: #cfd2d4;
+	font-weight: 500;
+	text-decoration: none;
+	transition: color 0.15s var(--glmr-ease);
+}
+
+.hdr .wp-block-navigation a:hover,
+.hdr .wp-block-navigation .wp-block-navigation-item__content:hover {
+	color: var(--wp--preset--color--on-ink);
+}
+
+.hdr .wp-block-navigation a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--pink);
+	outline-offset: 2px;
+}
+
+/* Search field on ink */
+.glmr-search .wp-block-search__input {
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid #4a4a4d;
+	color: var(--wp--preset--color--on-ink);
+	border-radius: 3px;
+	min-width: 220px;
+}
+
+.glmr-search .wp-block-search__input::placeholder {
+	color: #9a9a9c;
+}
+
+.glmr-search .wp-block-search__input:focus {
+	outline: 2px solid var(--wp--preset--color--pink);
+	outline-offset: 1px;
+	border-color: var(--wp--preset--color--pink);
+}
+
+/* Albums submenu + mobile drawer */
+.wp-block-navigation .wp-block-navigation__submenu-container {
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--fg);
+	box-shadow: var(--wp--preset--shadow--md);
+	border: 1px solid var(--wp--preset--color--hairline);
+	border-radius: 3px;
+	padding: 6px;
+	min-width: 200px;
+}
+
+.wp-block-navigation__submenu-container a {
+	color: var(--wp--preset--color--fg);
+	border-radius: 3px;
+}
+
+.wp-block-navigation__submenu-container .current-menu-item > a,
+.wp-block-navigation__submenu-container a:hover {
+	color: var(--wp--preset--color--pink);
+}
+
+/* Footer nav */
+.glmr-foot-nav a,
+.glmr-foot-nav .wp-block-navigation-item__content {
+	color: #b9bbbc;
+	text-decoration: none;
+}
+
+.glmr-foot-nav a:hover {
+	color: var(--wp--preset--color--on-ink);
+}
+
+/* ---- Photostream: square tiles, hover scrim + title fade ------------------ */
+.glmr-stream {
+	--glmr-gap: 6px;
+}
+
+.photo-tile {
+	position: relative;
+	overflow: hidden;
+	background: var(--wp--preset--color--ink);
+}
+
+.photo-tile .wp-block-post-featured-image,
+.photo-tile .wp-block-post-featured-image a,
+.photo-tile img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.photo-tile img {
+	object-fit: cover;
+	transition: transform 0.4s var(--glmr-ease);
+}
+
+.photo-tile::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, transparent 38%, rgba(0, 0, 0, 0.72));
+	opacity: 0;
+	transition: opacity 0.25s var(--glmr-ease);
+	pointer-events: none;
+}
+
+.photo-tile__title {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	margin: 0;
+	padding: 12px 14px;
+	color: #fff;
+	font-weight: 500;
+	line-height: 1.2;
+	opacity: 0;
+	transform: translateY(6px);
+	transition: opacity 0.25s var(--glmr-ease), transform 0.25s var(--glmr-ease);
+}
+
+.photo-tile__title a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.photo-tile:hover::after,
+.photo-tile:focus-within::after {
+	opacity: 1;
+}
+
+.photo-tile:hover .photo-tile__title,
+.photo-tile:focus-within .photo-tile__title {
+	opacity: 1;
+	transform: none;
+}
+
+.photo-tile:hover img {
+	transform: scale(1.04);
+}
+
+.photo-tile:focus-within {
+	outline: 2px solid var(--wp--preset--color--pink);
+	outline-offset: 2px;
+}
+
+/* ---- Pinned hero --------------------------------------------------------- */
+.glmr-pin .wp-block-post-title a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.glmr-pin .wp-block-post-title a:hover {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+/* ---- Category chip bar ---------------------------------------------------- */
+.glmr-chips ul {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0 0 24px;
+	padding: 0;
+}
+
+.glmr-chips li {
+	margin: 0;
+}
+
+.glmr-chips a {
+	display: inline-block;
+	padding: 5px 13px;
+	border: 1px solid var(--wp--preset--color--hairline);
+	border-radius: 9999px;
+	font-size: var(--wp--preset--font-size--meta);
+	line-height: 1.3;
+	color: var(--wp--preset--color--fg);
+	text-decoration: none;
+	transition: border-color 0.15s var(--glmr-ease), color 0.15s var(--glmr-ease);
+}
+
+.glmr-chips a:hover {
+	border-color: var(--wp--preset--color--pink);
+	color: var(--wp--preset--color--pink);
+}
+
+.glmr-chips li.current-cat a,
+.glmr-chips li.current-cat-ancestor a {
+	background: var(--wp--preset--color--pink);
+	border-color: var(--wp--preset--color--pink);
+	color: #fff;
+}
+
+/* ---- Single photo: meta sidebar + EXIF readout --------------------------- */
+.glmr-meta {
+	position: sticky;
+	top: 24px;
+	align-self: flex-start;
+}
+
+.glmr-photo img {
+	width: 100%;
+	height: auto;
+	box-shadow: var(--wp--preset--shadow--inset);
+}
+
+.glmr-exif .wp-block-x3p0-media-data {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	color: var(--wp--preset--color--muted);
+	font-size: var(--wp--preset--font-size--meta);
+	font-variant-numeric: tabular-nums;
+}
+
+.glmr-exif__label {
+	margin-bottom: 6px;
+}
+
+.glmr-tags a {
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+}
+
+.glmr-tags a:hover {
+	color: var(--wp--preset--color--pink);
+}
+
+/* ---- Journal reading rhythm (patterns 8–10) ------------------------------ */
+.glmr-prose {
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.75;
+}
+
+.glmr-prose :where(p, ul, ol, blockquote) {
+	max-width: 680px;
+}
+
+/* ---- Link-in-bio --------------------------------------------------------- */
+.glmr-linkbio .wp-block-button {
+	width: 100%;
+}
+
+.glmr-linkbio .wp-block-button__link {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+/* ---- Motion preference --------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+	.photo-tile img,
+	.photo-tile::after,
+	.photo-tile__title,
+	.hdr .wp-block-navigation a {
+		transition: none !important;
+	}
+
+	.photo-tile:hover img {
+		transform: none;
+	}
+}

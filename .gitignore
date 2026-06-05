@@ -1,0 +1,10 @@
+# Seeding scratch (demo content import staging — never part of the theme)
+/_seed/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+
+# Node (only if a build is ever added)
+node_modules/

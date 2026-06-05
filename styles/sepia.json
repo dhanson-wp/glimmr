@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Sepia",
+	"description": "Warm and analogue. A sepia duotone over the photos, with a warm off-white page and toasted-dark chrome.",
+	"settings": {
+		"color": {
+			"palette": [
+				{ "slug": "mist",        "color": "#f5efe4", "name": "Mist (page background)" },
+				{ "slug": "white",       "color": "#fbf7ef", "name": "White (surface)" },
+				{ "slug": "ink",         "color": "#2a2118", "name": "Ink (chrome)" },
+				{ "slug": "fg",          "color": "#2a2118", "name": "Foreground (body text)" },
+				{ "slug": "muted",       "color": "#6b5d49", "name": "Muted (meta / EXIF)" },
+				{ "slug": "faint",       "color": "#9a8a73", "name": "Faint (placeholder / disabled)" },
+				{ "slug": "on-ink",      "color": "#f5efe4", "name": "On ink (text on chrome)" },
+				{ "slug": "hairline",    "color": "#e3d7c4", "name": "Hairline (borders)" },
+				{ "slug": "pink",        "color": "#ff0084", "name": "Glimmr Pink (accent / focus / active)" },
+				{ "slug": "pink-action", "color": "#b3005e", "name": "Pink action (button bg)" },
+				{ "slug": "blue",        "color": "#8a5a23", "name": "Link (warm)" }
+			]
+		}
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--mist)", "text": "var(--wp--preset--color--fg)" },
+		"elements": {
+			"link": {
+				"color": { "text": "var(--wp--preset--color--blue)" },
+				":hover": { "color": { "text": "#5e3c12" } }
+			}
+		},
+		"blocks": {
+			"core/image": { "filter": { "duotone": "var:preset|duotone|sepia" } },
+			"core/cover": { "filter": { "duotone": "var:preset|duotone|sepia" } },
+			"core/post-featured-image": { "filter": { "duotone": "var:preset|duotone|sepia" } }
+		}
+	}
+}
