@@ -2,8 +2,6 @@
 
 A fast, image-first WordPress block theme for personal photo galleries. The chrome stays quiet and near-monochrome (Ink, white, and Mist) so the only saturated colour on the page is your photography, with a single hot Glimmr Pink reserved for action and focus.
 
-![Glimmr](screenshot.png)
-
 ## Overview
 
 Glimmr is built entirely from core WordPress blocks, configured through `theme.json` and a small amount of theme CSS. It pairs a photo-first front end (a pinned hero, a justified square photostream, a native lightbox on single photos) with a calmer, text-forward Journal track for writing. Six switchable style variations re-skin the whole site, and three of them apply a global duotone to every photo.

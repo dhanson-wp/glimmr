@@ -4,6 +4,10 @@
 # Local design notes — kept on disk, not part of the distributed theme
 /docs/
 
+# Demo-only photos — for local review, not distributed. Bring your own.
+/assets/img/
+/screenshot.png
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
