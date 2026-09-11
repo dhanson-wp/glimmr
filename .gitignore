@@ -6,7 +6,6 @@
 
 # Demo-only photos — for local review, not distributed. Bring your own.
 /assets/img/
-/screenshot.png
 
 # OS / editor cruft
 .DS_Store
