@@ -8,28 +8,32 @@
 ?>
 <!-- wp:group {"className":"glmr-linkbio","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained","contentSize":"420px"}} -->
 <div class="wp-block-group glmr-linkbio" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
-	<!-- wp:image {"width":"96px","height":"96px","scale":"cover","sizeSlug":"large","align":"center","style":{"border":{"radius":"9999px"}}} -->
-	<figure class="wp-block-image aligncenter size-large is-resized has-custom-border"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/portrait.jpg' ) ); ?>" alt="" style="border-radius:9999px;object-fit:cover;width:96px;height:96px"/></figure>
-	<!-- /wp:image -->
-	<!-- wp:heading {"textAlign":"center","level":2,"fontSize":"large","style":{"typography":{"fontWeight":"600"}}} -->
-	<h2 class="wp-block-heading has-text-align-center has-large-font-size" style="font-weight:600">glimmr</h2>
+	<!-- wp:avatar {"size":104,"align":"center","className":"glmr-linkbio-avatar","style":{"border":{"radius":"9999px"}}} /-->
+	<!-- wp:heading {"textAlign":"center","level":2,"metadata":{"bindings":{"content":{"source":"glimmr/author-name"}}},"fontSize":"large","style":{"typography":{"fontWeight":"600"}}} -->
+	<h2 class="wp-block-heading has-text-align-center has-large-font-size" style="font-weight:600">Mara Iverson</h2>
 	<!-- /wp:heading -->
+	<!-- wp:paragraph {"align":"center","className":"glmr-linkbio-handle","metadata":{"bindings":{"content":{"source":"glimmr/author-handle"}}},"fontSize":"meta"} -->
+	<p class="has-text-align-center glmr-linkbio-handle has-meta-font-size">@mara</p>
+	<!-- /wp:paragraph -->
 	<!-- wp:paragraph {"align":"center","textColor":"muted","fontSize":"meta"} -->
-	<p class="has-text-align-center has-muted-color has-text-color has-meta-font-size">A quiet place for photographs.</p>
+	<p class="has-text-align-center has-muted-color has-text-color has-meta-font-size">Light, weather, and the long way round. Available light only.</p>
 	<!-- /wp:paragraph -->
 	<!-- wp:buttons {"layout":{"type":"flex","orientation":"vertical"},"style":{"spacing":{"blockGap":"var:preset|spacing|20","margin":{"top":"var:preset|spacing|20"}}}} -->
 	<div class="wp-block-buttons">
-		<!-- wp:button {"width":100} -->
-		<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link wp-element-button">Latest album</a></div>
+		<!-- wp:button {"width":100,"url":"/","className":"is-style-outline"} -->
+		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="/">Portfolio</a></div>
 		<!-- /wp:button -->
-		<!-- wp:button {"width":100,"className":"is-style-outline"} -->
-		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button">Print shop</a></div>
+		<!-- wp:button {"width":100,"url":"/prints/","className":"is-style-outline"} -->
+		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="/prints/">Print shop</a></div>
 		<!-- /wp:button -->
-		<!-- wp:button {"width":100,"className":"is-style-outline"} -->
-		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button">Newsletter</a></div>
+		<!-- wp:button {"width":100,"url":"/newsletter/","className":"is-style-outline"} -->
+		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="/newsletter/">Newsletter</a></div>
 		<!-- /wp:button -->
-		<!-- wp:button {"width":100,"className":"is-style-outline"} -->
-		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button">Email me</a></div>
+		<!-- wp:button {"width":100,"url":"/contact/","className":"is-style-outline"} -->
+		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="/contact/">Contact</a></div>
+		<!-- /wp:button -->
+		<!-- wp:button {"width":100,"url":"/feed/","className":"is-style-outline"} -->
+		<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="/feed/">RSS feed</a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

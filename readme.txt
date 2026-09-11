@@ -17,11 +17,11 @@ Ships with six switchable style variations: Daylight (default), Midnight (dark),
 
 The theme is content-agnostic: it ships templates, parts, patterns and styles, never content. No category or tag slugs are hardcoded; archive heroes read the queried term, and the front-page pin is a sticky post.
 
-== Plugins ==
+== Required plugin ==
 
-Recommended (optional):
+For full single-photo fidelity, install and activate `x3p0/media-data` (`x3p0-media-data`). Glimmr uses that block plugin for the camera and exposure readout on `templates/single.html`. The rest of the theme is theme-owned and core-block based.
 
-* **X3P0: Media Data** (`x3p0/media-data`) by Justin Tadlock — provides the EXIF/ID3 metadata blocks used by the single-photo camera readout (camera, aperture, shutter, ISO, focal length, date). The gallery, archives and all other screens work without it; only the single-photo EXIF block needs it. Install from the plugin directory: search "X3P0 Media Data".
+On WordPress.com, plugin installation requires a paid plan. If the plugin is not installed, the theme still works, but the single-photo EXIF panel will not match the design.
 
 == Style variations ==
 

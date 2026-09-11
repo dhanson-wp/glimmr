@@ -1,0 +1,484 @@
+@font-face {
+	font-family: "Figtree";
+	font-style: normal;
+	font-weight: 300 700;
+	font-display: swap;
+	src: url("../fonts/figtree-variable.woff2") format("woff2");
+}
+
+:root {
+	--glmr-mist: #f3f5f6;
+	--glmr-white: #ffffff;
+	--glmr-ink: #212124;
+	--glmr-fg: #101012;
+	--glmr-muted: #5c5c5c;
+	--glmr-faint: #898989;
+	--glmr-hairline: #dddddd;
+	--glmr-pink: #ff0084;
+	--glmr-pink-dark: #ff3da0;
+	--glmr-pink-action: #d1006e;
+	--glmr-blue: #0063a8;
+	--glmr-blue-hover: #004f86;
+	--glmr-danger: #c8102e;
+	--glmr-success: #1a8a4a;
+	--glmr-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+	--glmr-icon-arrow-back: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath fill='black' d='m313-440 196 196q12 12 11.5 28T508-188q-12 11-28 11.5T452-188L188-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l264-264q11-11 27.5-11t28.5 11q12 12 12 28.5T508-715L313-520h447q17 0 28.5 11.5T800-480q0 17-11.5 28.5T760-440H313Z'/%3E%3C/svg%3E");
+}
+
+html,
+body.login {
+	min-height: 100%;
+}
+
+body.login {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	min-height: 100vh;
+	margin: 0;
+	padding: 32px 24px 62px;
+	background: var(--glmr-ink);
+	color: var(--glmr-fg);
+	font-family: Figtree, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body.login::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: rgba(20, 20, 22, 0.78);
+	pointer-events: none;
+}
+
+.glmr-login-montage {
+	position: fixed;
+	inset: 0;
+	z-index: -2;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-auto-rows: 25vh;
+	gap: 4px;
+	overflow: hidden;
+	background: var(--glmr-ink);
+}
+
+.glmr-login-montage img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+#login {
+	width: min(360px, 100%);
+	padding: 0;
+	margin: 0 auto;
+}
+
+.login h1.wp-login-logo {
+	height: 30px;
+	margin: 0 0 24px;
+	text-align: center;
+	font-size: 30px;
+	line-height: 1;
+}
+
+.login h1.wp-login-logo a {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+	background: none;
+	color: var(--glmr-white);
+	font-family: Figtree, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	font-size: 30px;
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: 0;
+	text-indent: 0;
+	text-decoration: none;
+	text-transform: lowercase;
+}
+
+.login h1.wp-login-logo a:focus-visible {
+	border-radius: 3px;
+	outline: 2px solid var(--glmr-pink);
+	outline-offset: 6px;
+}
+
+.login h1.wp-login-logo .glmr-wordmark__text {
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.login h1.wp-login-logo .glmr-wordmark__dotless {
+	position: relative;
+	display: inline-block;
+}
+
+.login h1.wp-login-logo .glmr-wordmark__dotless::after {
+	content: "";
+	position: absolute;
+	top: 0.12em;
+	left: 50%;
+	width: 0.165em;
+	height: 0.165em;
+	border-radius: 50%;
+	background: var(--glmr-pink);
+	transform: translateX(-50%);
+}
+
+.login form {
+	margin: 0;
+	padding: 34px;
+	background: var(--glmr-white);
+	border: 1px solid var(--glmr-hairline);
+	border-radius: 0;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 3px 6px -1px;
+	color: var(--glmr-fg);
+}
+
+.login label {
+	color: var(--glmr-fg);
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.15;
+}
+
+.login form .input,
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="email"] {
+	min-height: 46px;
+	margin-top: 4px;
+	margin-bottom: 13px;
+	padding: 0 14px;
+	border: 1px solid var(--glmr-hairline);
+	border-radius: 3px;
+	background: var(--glmr-white);
+	color: var(--glmr-fg);
+	font-family: inherit;
+	font-size: 15px;
+	box-shadow: none;
+	transition: border-color 0.15s var(--glmr-ease), box-shadow 0.15s var(--glmr-ease);
+}
+
+.login form .input:focus,
+.login input[type="text"]:focus,
+.login input[type="password"]:focus,
+.login input[type="email"]:focus {
+	border-color: var(--glmr-pink);
+	box-shadow: 0 0 0 2px rgba(255, 0, 132, 0.16);
+	outline: 0;
+}
+
+.login .button.wp-hide-pw {
+	color: var(--glmr-faint);
+}
+
+.login .button.wp-hide-pw:hover,
+.login .button.wp-hide-pw:focus {
+	color: var(--glmr-muted);
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.login .button.wp-hide-pw:focus-visible {
+	outline: 2px solid var(--glmr-pink);
+	outline-offset: 2px;
+}
+
+.login form .forgetmenot {
+	display: flex;
+	float: none;
+	align-items: center;
+	width: 100%;
+	margin: 2px 0 0;
+}
+
+body.login #login form p.forgetmenot {
+	margin: 2px 0 0;
+}
+
+.login .forgetmenot label {
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	color: var(--glmr-fg);
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 1.15;
+}
+
+.login input[type="checkbox"] {
+	width: 18px;
+	height: 18px;
+	margin: 0;
+	border: 1px solid var(--glmr-hairline);
+	border-radius: 3px;
+	box-shadow: none;
+}
+
+.login input[type="checkbox"]:checked {
+	background: var(--glmr-pink);
+	border-color: var(--glmr-pink);
+}
+
+.login input[type="checkbox"]:checked::before {
+	filter: brightness(0) invert(1);
+}
+
+.login .submit {
+	margin: 0;
+	padding: 0;
+}
+
+body.login-action-login #login form p.submit {
+	margin-top: 22px;
+}
+
+.wp-core-ui .button-primary {
+	display: block;
+	float: none;
+	width: 100%;
+	height: 48px;
+	min-height: 48px;
+	border: 0;
+	border-radius: 3px;
+	background: var(--glmr-pink-action);
+	color: var(--glmr-white);
+	font-family: inherit;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1;
+	text-shadow: none;
+	box-shadow: none;
+	transition: background 0.15s var(--glmr-ease);
+}
+
+.wp-core-ui .button-primary:hover,
+.wp-core-ui .button-primary:focus {
+	background: #b3005e;
+	color: var(--glmr-white);
+	box-shadow: none;
+}
+
+.wp-core-ui .button-primary:focus {
+	outline: 2px solid var(--glmr-pink);
+	outline-offset: 2px;
+}
+
+.login #login_error,
+.login .message,
+.login .notice {
+	margin: 0 0 22px;
+	padding: 13px 15px;
+	background: var(--glmr-white);
+	border: 1px solid var(--glmr-hairline);
+	border-left: 4px solid var(--glmr-faint);
+	box-shadow: none;
+	color: var(--glmr-fg);
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.login #login_error {
+	border-left-color: var(--glmr-danger);
+}
+
+.login .message.register,
+.login .message.reset-pass,
+.login .message.success {
+	border-left-color: var(--glmr-success);
+}
+
+.login p.message {
+	text-align: left;
+}
+
+.login #nav,
+.login #backtoblog,
+.login .privacy-policy-page-link {
+	margin: 20px 0 0;
+	padding: 0;
+	text-align: center;
+}
+
+.login #backtoblog {
+	margin-top: 12px;
+}
+
+.login #nav a,
+.login #backtoblog a,
+.login .privacy-policy-page-link a {
+	color: var(--glmr-white);
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.login #backtoblog a,
+.login .privacy-policy-page-link a {
+	color: rgba(255, 255, 255, 0.72);
+}
+
+.login #backtoblog a {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.login #backtoblog a::before {
+	content: "";
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	flex: 0 0 auto;
+	background: currentColor;
+	-webkit-mask: var(--glmr-icon-arrow-back) center / contain no-repeat;
+	mask: var(--glmr-icon-arrow-back) center / contain no-repeat;
+}
+
+.login #nav a:hover {
+	color: var(--glmr-pink-dark);
+}
+
+.login #backtoblog a:hover,
+.login .privacy-policy-page-link a:hover {
+	color: var(--glmr-white);
+}
+
+.login #nav a:focus-visible,
+.login #backtoblog a:focus-visible,
+.login .privacy-policy-page-link a:focus-visible {
+	border-radius: 3px;
+	outline: 2px solid var(--glmr-pink);
+	outline-offset: 4px;
+}
+
+.login .language-switcher {
+	display: none;
+}
+
+.glmr-login-foot {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	box-sizing: border-box;
+	height: 36px;
+	padding: 0 24px 18px;
+	color: rgba(255, 255, 255, 0.64);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1.25;
+	text-align: center;
+	pointer-events: none;
+}
+
+body.login.glmr-login-no-montage {
+	padding-bottom: 80px;
+	background: var(--glmr-mist);
+}
+
+body.login.glmr-login-no-montage::before {
+	display: none;
+}
+
+body.login.glmr-login-no-montage .glmr-login-montage {
+	display: none;
+}
+
+body.login.glmr-login-no-montage h1.wp-login-logo a {
+	color: var(--glmr-fg);
+}
+
+body.login.glmr-login-no-montage #nav a {
+	color: var(--glmr-blue);
+}
+
+body.login.glmr-login-no-montage #nav a:hover {
+	color: var(--glmr-blue-hover);
+}
+
+body.login.glmr-login-no-montage #backtoblog a,
+body.login.glmr-login-no-montage .privacy-policy-page-link a {
+	color: var(--glmr-muted);
+}
+
+body.login.glmr-login-no-montage #backtoblog a:hover,
+body.login.glmr-login-no-montage .privacy-policy-page-link a:hover {
+	color: var(--glmr-fg);
+}
+
+body.login.glmr-login-no-montage .glmr-login-foot {
+	color: var(--glmr-faint);
+}
+
+@media (prefers-reduced-motion: reduce), print {
+	body.login {
+		background: var(--glmr-mist);
+		padding-bottom: 80px;
+	}
+
+	body.login::before,
+	.glmr-login-montage {
+		display: none;
+	}
+
+	.login h1.wp-login-logo a {
+		color: var(--glmr-fg);
+	}
+
+	.login #nav a {
+		color: var(--glmr-blue);
+	}
+
+	.login #nav a:hover {
+		color: var(--glmr-blue-hover);
+	}
+
+	.login #backtoblog a,
+	.login .privacy-policy-page-link a {
+		color: var(--glmr-muted);
+	}
+
+	.login #backtoblog a:hover,
+	.login .privacy-policy-page-link a:hover {
+		color: var(--glmr-fg);
+	}
+
+	.glmr-login-foot {
+		color: var(--glmr-faint);
+	}
+}
+
+@media (max-width: 520px) {
+	body.login {
+		padding: 28px 24px;
+	}
+
+	.glmr-login-montage {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(6, 1fr);
+		grid-auto-rows: auto;
+	}
+
+	.glmr-login-montage img:nth-child(n+19) {
+		display: none;
+	}
+
+	.login form {
+		padding: 34px;
+	}
+
+	.glmr-login-foot {
+		display: none;
+	}
+}

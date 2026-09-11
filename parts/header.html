@@ -1,15 +1,27 @@
-<!-- wp:group {"tagName":"header","className":"hdr","backgroundColor":"ink","textColor":"on-ink","layout":{"type":"constrained","contentSize":"1400px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}}} -->
-<header class="wp-block-group hdr has-on-ink-color has-ink-background-color has-background" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
+<!-- wp:group {"className":"hdr","backgroundColor":"ink","textColor":"on-ink","layout":{"type":"constrained","contentSize":"1400px"},"style":{"spacing":{"padding":{"top":"12px","bottom":"12px"}}}} -->
+<div class="wp-block-group hdr has-on-ink-color has-ink-background-color has-text-color has-background" style="padding-top:12px;padding-bottom:12px">
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group">
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 		<div class="wp-block-group">
 			<!-- wp:site-title {"level":0,"className":"glmr-wordmark"} /-->
 			<!-- wp:navigation {"overlayMenu":"mobile","className":"glmr-nav","layout":{"type":"flex","justifyContent":"left","flexWrap":"nowrap"}} -->
-				<!-- wp:home-link {"label":"Home"} /-->
-				<!-- wp:navigation-link {"label":"Albums","url":"#","kind":"custom","className":"glmr-nav-albums"} /-->
+				<!-- wp:home-link {"label":"Latest"} /-->
+				<!-- wp:navigation-submenu {"label":"Albums","url":"/albums/","kind":"custom","className":"glmr-nav-albums"} -->
+					<!-- wp:navigation-link {"label":"Abstract","url":"/category/abstract/","kind":"custom","className":"glmr-album-link"} /-->
+					<!-- wp:navigation-link {"label":"Beaches","url":"/category/beaches/","kind":"custom","className":"glmr-album-link"} /-->
+					<!-- wp:navigation-link {"label":"Food","url":"/category/food/","kind":"custom","className":"glmr-album-link"} /-->
+					<!-- wp:navigation-link {"label":"Football","url":"/category/football/","kind":"custom","className":"glmr-album-link"} /-->
+					<!-- wp:navigation-link {"label":"Lego","url":"/category/lego/","kind":"custom","className":"glmr-album-link"} /-->
+					<!-- wp:navigation-link {"label":"Portraits","url":"/category/portraits/","kind":"custom","className":"glmr-album-link"} /-->
+					<!-- wp:navigation-link {"label":"Browse all albums","url":"/albums/","kind":"custom","className":"glmr-album-foot"} /-->
+				<!-- /wp:navigation-submenu -->
+				<!-- wp:navigation-link {"label":"Tags","url":"/tags/","kind":"custom"} /-->
 				<!-- wp:navigation-link {"label":"About","url":"/about/","kind":"custom"} /-->
+				<!-- wp:navigation-link {"label":"Follow","url":"/feed/","kind":"custom","className":"glmr-nav-follow"} /-->
 			<!-- /wp:navigation -->
+			<!-- wp:site-title {"level":0,"className":"glmr-wordmark glmr-mobile-drawer-wordmark"} /-->
+			<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search photos","buttonText":"Search","buttonPosition":"no-button","className":"glmr-drawer-search glmr-search"} /-->
 		</div>
 		<!-- /wp:group -->
 
@@ -17,13 +29,13 @@
 		<div class="wp-block-group">
 			<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search photos","buttonText":"Search","buttonPosition":"no-button","className":"glmr-search"} /-->
 			<!-- wp:buttons -->
-			<div class="wp-block-buttons"><!-- wp:button {"className":"glmr-follow"} -->
-				<div class="wp-block-button glmr-follow"><a class="wp-block-button__link wp-element-button">Follow</a></div>
+			<div class="wp-block-buttons"><!-- wp:button {"url":"/feed/","className":"glmr-follow"} -->
+				<div class="wp-block-button glmr-follow"><a class="wp-block-button__link wp-element-button" href="/feed/">Follow</a></div>
 			<!-- /wp:button --></div>
 			<!-- /wp:buttons -->
 		</div>
 		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
-</header>
+</div>
 <!-- /wp:group -->

@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "glimmr/heart-button",
+	"title": "Heart button",
+	"category": "theme",
+	"icon": "heart",
+	"description": "Interactivity API heart control for photo cards and single photos.",
+	"textdomain": "glimmr",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"default": "action"
+		},
+		"showCount": {
+			"type": "boolean",
+			"default": true
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"interactivity": true,
+		"reusable": false
+	},
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
+}

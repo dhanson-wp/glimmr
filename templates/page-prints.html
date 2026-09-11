@@ -1,20 +1,33 @@
 <!-- wp:template-part {"slug":"header","tagName":"header","area":"header"} /-->
 
-<!-- wp:group {"tagName":"main","align":"full","className":"glmr-index","style":{"spacing":{"padding":{"top":"52px","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group alignfull glmr-index" style="padding-top:52px;padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:group {"className":"glmr-title-band","align":"wide","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"baseline"},"style":{"spacing":{"blockGap":"16px","margin":{"bottom":"26px"}}}} -->
-	<div class="wp-block-group glmr-title-band alignwide" style="margin-bottom:26px">
+<!-- wp:group {"tagName":"main","align":"full","className":"glmr-page glmr-prints-page","style":{"spacing":{"padding":{"top":"52px","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull glmr-page glmr-prints-page" style="padding-top:52px;padding-bottom:var(--wp--preset--spacing--60)">
+	<!-- wp:group {"className":"glmr-title-band","align":"wide","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"baseline"},"style":{"spacing":{"blockGap":"16px","margin":{"bottom":"0"}}}} -->
+	<div class="wp-block-group glmr-title-band alignwide" style="margin-bottom:0">
 		<!-- wp:heading {"level":1,"fontSize":"xx-large"} -->
-		<h1 class="wp-block-heading has-xx-large-font-size">Latest</h1>
+		<h1 class="wp-block-heading has-xx-large-font-size">Print shop</h1>
 		<!-- /wp:heading -->
-		<!-- wp:paragraph {"className":"glmr-title-band__sub","metadata":{"bindings":{"content":{"source":"glimmr/photo-count","args":{"suffix":"newest first"}}}},"fontSize":"meta","textColor":"muted"} -->
-		<p class="glmr-title-band__sub has-muted-color has-text-color has-meta-font-size">0 photos · newest first</p>
+		<!-- wp:paragraph {"className":"glmr-title-band__sub","metadata":{"bindings":{"content":{"source":"glimmr/photo-count","args":{"suffix":"available to browse"}}}},"fontSize":"meta","textColor":"muted"} -->
+		<p class="glmr-title-band__sub has-muted-color has-text-color has-meta-font-size">0 photos</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:query {"queryId":1,"query":{"inherit":true,"perPage":12},"align":"wide","className":"glmr-stream-wrap"} -->
-	<div class="wp-block-query glmr-stream-wrap alignwide">
+	<!-- wp:group {"align":"wide","className":"glmr-section-head","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"baseline"}} -->
+	<div class="wp-block-group alignwide glmr-section-head">
+		<!-- wp:paragraph {"className":"glmr-page-lead","fontSize":"large","textColor":"muted"} -->
+		<p class="glmr-page-lead has-muted-color has-text-color has-large-font-size">A few photographs are worth living with off-screen. Browse the archive, choose the frame you have in mind, and keep the title or link handy.</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:buttons -->
+		<div class="wp-block-buttons"><!-- wp:button {"url":"/contact/","className":"is-style-outline"} -->
+			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/contact/">Ask about a print</a></div>
+		<!-- /wp:button --></div>
+		<!-- /wp:buttons -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"queryId":11,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","sticky":"exclude","inherit":false},"align":"wide","className":"glmr-stream-wrap"} -->
+	<div class="wp-block-query alignwide glmr-stream-wrap">
 		<!-- wp:post-template {"className":"glmr-stream is-style-glimmr-masonry","layout":{"type":"grid","minimumColumnWidth":"240px"},"style":{"spacing":{"blockGap":"6px"}}} -->
 			<!-- wp:group {"className":"photo-tile","layout":{"type":"constrained"}} -->
 			<div class="wp-block-group photo-tile">

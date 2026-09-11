@@ -11,8 +11,11 @@
     "color": {
       "defaultPalette": false,
       "defaultGradients": false,
-      "custom": true,
-      "customDuotone": true,
+      "defaultDuotone": false,
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "gradients": [],
       "palette": [
         { "slug": "mist",        "color": "#f3f5f6", "name": "Mist (page background)" },
         { "slug": "white",       "color": "#ffffff", "name": "White (surface)" },
@@ -43,22 +46,24 @@
           ]
         }
       ],
+      "customFontSize": false,
+      "defaultFontSizes": false,
       "fontSizes": [
-        { "slug": "chip",     "name": "Chip (11–12)",       "size": "clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem)", "fluid": false },
-        { "slug": "meta",     "name": "Meta (12–14)",       "size": "clamp(0.75rem, 0.72rem + 0.2vw, 0.875rem)",  "fluid": false },
-        { "slug": "base",     "name": "Body (14–16)",       "size": "clamp(0.875rem, 0.84rem + 0.3vw, 1rem)",     "fluid": false },
-        { "slug": "large",    "name": "Card title (16–20)", "size": "clamp(1rem, 0.94rem + 0.5vw, 1.25rem)",      "fluid": false },
-        { "slug": "x-large",  "name": "Heading (24–36)",    "size": "clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem)",     "fluid": false },
-        { "slug": "xx-large", "name": "Hero (36–52)",       "size": "clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem)",    "fluid": false }
+        { "slug": "chip",     "name": "Chip (12)",       "size": "12px", "fluid": false },
+        { "slug": "meta",     "name": "Meta (14)",       "size": "14px", "fluid": false },
+        { "slug": "base",     "name": "Body (16)",       "size": "16px", "fluid": false },
+        { "slug": "large",    "name": "Card title (20)", "size": "20px", "fluid": false },
+        { "slug": "x-large",  "name": "Heading (36)",    "size": "36px", "fluid": false },
+        { "slug": "xx-large", "name": "Hero (52)",       "size": "52px", "fluid": false }
       ],
       "fontWeight": true,
       "lineHeight": true,
       "letterSpacing": true,
-      "fluid": true
+      "fluid": false
     },
     "spacing": {
-      "units": ["px", "rem", "%", "vw", "vh"],
-      "customSpacingSize": true,
+      "units": ["px", "rem", "%"],
+      "customSpacingSize": false,
       "defaultSpacingSizes": false,
       "spacingSizes": [
         { "slug": "10", "name": "1 · 4px",   "size": "4px" },
@@ -96,10 +101,10 @@
     "elements": {
       "link": {
         "color": { "text": "var(--wp--preset--color--blue)" },
-        ":hover": { "color": { "text": "#004f86" } },
+        ":hover": { "color": { "text": "var(--glmr-link-hover)" } },
         ":focus": { "outline": { "color": "var(--wp--preset--color--pink)", "width": "2px", "style": "solid", "offset": "2px" } }
       },
-      "heading": { "typography": { "fontWeight": "300", "lineHeight": "1.1", "letterSpacing": "-0.01em" } },
+      "heading": { "typography": { "fontWeight": "300", "lineHeight": "1.1", "letterSpacing": "0" } },
       "h3": { "typography": { "fontWeight": "600", "lineHeight": "1.3" } },
       "h4": { "typography": { "fontWeight": "600" } },
       "h5": { "typography": { "fontWeight": "600", "textTransform": "uppercase", "letterSpacing": "0.06em" } },
@@ -115,6 +120,7 @@
     "blocks": {
       "core/image": { "border": { "radius": "0px" } },
       "core/post-featured-image": { "border": { "radius": "0px" } },
+      "core/cover": { "border": { "radius": "0px" } },
       "core/site-title": { "typography": { "fontWeight": "600", "fontSize": "var(--wp--preset--font-size--large)" } },
       "core/post-terms": { "typography": { "fontSize": "var(--wp--preset--font-size--meta)" }, "color": { "text": "var(--wp--preset--color--muted)" } },
       "core/query-pagination": { "typography": { "fontSize": "var(--wp--preset--font-size--meta)" } },
@@ -128,6 +134,13 @@
     { "name": "footer", "title": "Footer", "area": "footer" }
   ],
   "customTemplates": [
-    { "name": "page-link-in-bio", "title": "Link in bio", "postTypes": ["page"] }
+    { "name": "page-about", "title": "About", "postTypes": ["page"] },
+    { "name": "page-albums", "title": "Albums", "postTypes": ["page"] },
+    { "name": "page-contact", "title": "Contact", "postTypes": ["page"] },
+    { "name": "page-link-in-bio", "title": "Link in bio", "postTypes": ["page"] },
+    { "name": "page-newsletter", "title": "Newsletter", "postTypes": ["page"] },
+    { "name": "page-popular", "title": "Popular", "postTypes": ["page"] },
+    { "name": "page-prints", "title": "Print shop", "postTypes": ["page"] },
+    { "name": "page-tags", "title": "Tags", "postTypes": ["page"] }
   ]
 }

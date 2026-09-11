@@ -3,37 +3,42 @@
  * Title: About the photographer
  * Slug: glimmr/about-photographer
  * Categories: glimmr-photo, about
- * Description: A portrait beside a short bio and a couple of links.
+ * Description: A portrait beside a short bio, practice note, and story link.
  */
 ?>
-<!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"},"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}}} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
-	<!-- wp:column {"verticalAlignment":"center","width":"34%"} -->
-	<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:34%">
-		<!-- wp:image {"width":"220px","height":"220px","scale":"cover","sizeSlug":"large","className":"is-style-default","style":{"border":{"radius":"9999px"}}} -->
-		<figure class="wp-block-image size-large is-resized is-style-default has-custom-border"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/portrait.jpg' ) ); ?>" alt="" style="border-radius:9999px;object-fit:cover;width:220px;height:220px"/></figure>
-		<!-- /wp:image -->
+<!-- wp:columns {"verticalAlignment":"center","align":"wide","className":"glmr-about-card","style":{"spacing":{"blockGap":{"left":"40px"},"padding":{"top":"44px","right":"48px","bottom":"44px","left":"48px"}},"border":{"color":"var:preset|color|hairline","width":"1px","radius":"0px"}}} -->
+<div class="wp-block-columns alignwide glmr-about-card are-vertically-aligned-center" style="border-color:var(--wp--preset--color--hairline);border-width:1px;border-radius:0px;padding-top:44px;padding-right:48px;padding-bottom:44px;padding-left:48px">
+	<!-- wp:column {"verticalAlignment":"center","width":"160px"} -->
+	<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:160px">
+			<!-- wp:avatar {"size":160,"className":"glmr-about-avatar","style":{"border":{"radius":"9999px"}}} /-->
 	</div>
 	<!-- /wp:column -->
 	<!-- wp:column {"verticalAlignment":"center"} -->
 	<div class="wp-block-column is-vertically-aligned-center">
-		<!-- wp:paragraph {"className":"glmr-eyebrow","fontSize":"chip","textColor":"muted"} -->
-		<p class="glmr-eyebrow has-muted-color has-text-color has-chip-font-size">About</p>
+		<!-- wp:paragraph {"className":"glmr-eyebrow","fontSize":"chip","textColor":"pink"} -->
+		<p class="glmr-eyebrow has-pink-color has-text-color has-chip-font-size">About the photographer</p>
 		<!-- /wp:paragraph -->
-		<!-- wp:heading {"fontSize":"x-large"} -->
-		<h2 class="wp-block-heading has-x-large-font-size">Hi, I’m the one behind the camera.</h2>
+		<!-- wp:heading {"metadata":{"bindings":{"content":{"source":"glimmr/author-name"}}},"fontSize":"x-large"} -->
+		<h2 class="wp-block-heading has-x-large-font-size">Photographer</h2>
 		<!-- /wp:heading -->
-		<!-- wp:paragraph {"fontSize":"large","textColor":"muted"} -->
-		<p class="has-muted-color has-text-color has-large-font-size">I photograph quiet light and the places it lands. This is where the pictures live, untethered from any feed. Stay a while.</p>
+		<!-- wp:paragraph {"className":"glmr-about-location","fontSize":"meta","textColor":"muted"} -->
+		<p class="glmr-about-location has-muted-color has-text-color has-meta-font-size">Available light only</p>
 		<!-- /wp:paragraph -->
-		<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
-		<div class="wp-block-buttons"><!-- wp:button -->
-			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Follow</a></div>
-		<!-- /wp:button -->
-		<!-- wp:button {"className":"is-style-outline"} -->
-			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button">Read more</a></div>
-		<!-- /wp:button --></div>
-		<!-- /wp:buttons -->
+		<!-- wp:paragraph {"fontSize":"large","textColor":"fg"} -->
+		<p class="has-fg-color has-text-color has-large-font-size">I photograph light and weather — fields at golden hour, grey harbors, the long way round. Self-taught, available light only, and happiest a few hours from the nearest road.</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:group {"className":"glmr-about-foot","style":{"spacing":{"blockGap":"var:preset|spacing|30","margin":{"top":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group glmr-about-foot" style="margin-top:var(--wp--preset--spacing--30)">
+			<!-- wp:paragraph {"className":"glmr-about-stat","metadata":{"bindings":{"content":{"source":"glimmr/photo-count","args":{"since":true}}}},"fontSize":"meta","textColor":"muted"} -->
+			<p class="glmr-about-stat has-muted-color has-text-color has-meta-font-size">0 photos</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons"><!-- wp:button {"url":"/about/","className":"is-style-outline"} -->
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/about/">Read the full story</a></div>
+			<!-- /wp:button --></div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:column -->
 </div>

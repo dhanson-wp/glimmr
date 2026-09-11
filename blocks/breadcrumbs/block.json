@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "glimmr/breadcrumbs",
+	"title": "Breadcrumbs",
+	"category": "theme",
+	"icon": "menu",
+	"description": "Home, category, and current title trail for single photos.",
+	"textdomain": "glimmr",
+	"supports": {
+		"html": false,
+		"inserter": false,
+		"reusable": false,
+		"color": {
+			"text": true
+		}
+	},
+	"render": "file:./render.php"
+}

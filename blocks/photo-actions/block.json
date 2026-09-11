@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "glimmr/photo-actions",
+	"title": "Photo actions",
+	"category": "theme",
+	"icon": "camera",
+	"description": "Accessible single-photo action controls.",
+	"textdomain": "glimmr",
+	"supports": {
+		"html": false,
+		"inserter": false,
+		"interactivity": true,
+		"reusable": false
+	},
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js",
+	"viewScriptModule": "glimmr-heart-button-view-script-module"
+}
