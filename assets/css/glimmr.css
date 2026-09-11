@@ -626,6 +626,16 @@ html.has-modal-open:has(.wp-block-navigation__responsive-container.is-menu-open.
 	color: #fff;
 }
 
+/* Breathing room above the footer.
+   Single source of truth for the gap at the bottom of every template: the
+   footer sits on a dark `ink` background, so the space has to be light area
+   above it, not padding inside it. Templates deliberately do NOT set their own
+   padding-bottom on <main>; this keeps every current and future template
+   consistent without per-template edits. */
+.wp-site-blocks > footer {
+	margin-block-start: var(--wp--preset--spacing--60);
+}
+
 /* Footer nav */
 .ftr {
 	padding-right: 0 !important;
