@@ -1028,6 +1028,11 @@ function glimmr_register_blocks() {
 	register_block_type( GLIMMR_DIR . '/blocks/heart-button' );
 	register_block_type( GLIMMR_DIR . '/blocks/photo-actions' );
 	register_block_type( GLIMMR_DIR . '/blocks/breadcrumbs' );
+	register_block_type(
+		GLIMMR_DIR . '/blocks/featured-photo',
+		// render.php renders the inner blocks itself, under the resolved post's context.
+		array( 'skip_inner_blocks' => true )
+	);
 }
 add_action( 'init', 'glimmr_register_blocks' );
 
@@ -1137,5 +1142,6 @@ require_once GLIMMR_DIR . '/inc/featured-term-image.php';
 require_once GLIMMR_DIR . '/inc/heart-button.php';
 require_once GLIMMR_DIR . '/inc/block-bindings.php';
 require_once GLIMMR_DIR . '/inc/related-query.php';
+require_once GLIMMR_DIR . '/inc/featured-photo.php';
 require_once GLIMMR_DIR . '/inc/login-style.php';
 require_once GLIMMR_DIR . '/inc/photo-search.php';

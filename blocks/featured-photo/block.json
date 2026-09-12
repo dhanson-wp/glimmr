@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "glimmr/featured-photo",
+	"title": "Featured photo",
+	"category": "theme",
+	"icon": "format-image",
+	"description": "Shows one photo as the hero: the newest, a daily rotation, or one you choose. The post blocks inside it read from that photo.",
+	"keywords": [ "hero", "photo", "cover" ],
+	"textdomain": "glimmr",
+	"attributes": {
+		"mode": {
+			"type": "string",
+			"enum": [ "recent", "daily", "manual" ],
+			"default": "recent"
+		},
+		"postId": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false,
+		"align": [ "full" ],
+		"inserter": true
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./edit.js"
+}

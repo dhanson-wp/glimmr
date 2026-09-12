@@ -2,46 +2,30 @@
 
 <!-- wp:group {"tagName":"main","align":"full","className":"glmr-front","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <main class="wp-block-group alignfull glmr-front">
-	<!-- wp:query {"queryId":10,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","sticky":"only","inherit":false},"className":"glmr-pin","align":"full"} -->
-	<div class="wp-block-query glmr-pin alignfull">
-		<!-- wp:post-template {"className":"glmr-pin__tpl"} -->
-			<!-- wp:cover {"useFeaturedImage":true,"dimRatio":40,"overlayColor":"ink","isDark":true,"minHeight":600,"minHeightUnit":"px","align":"full","className":"glmr-hero-cover","contentPosition":"bottom left","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"48px","left":"40px","right":"40px"}}}} -->
-			<div class="wp-block-cover alignfull is-dark has-custom-content-position is-position-bottom-left glmr-hero-cover" style="padding-top:var(--wp--preset--spacing--60);padding-right:40px;padding-bottom:48px;padding-left:40px;min-height:600px">
-				<span aria-hidden="true" class="wp-block-cover__background has-ink-background-color has-background-dim-40 has-background-dim"></span>
-				<div class="wp-block-cover__inner-container">
-					<!-- wp:group {"className":"glmr-pin__meta","layout":{"type":"constrained","contentSize":"1400px"}} -->
-					<div class="wp-block-group glmr-pin__meta">
-						<!-- wp:post-title {"isLink":true,"level":1,"fontSize":"xx-large","textColor":"white","className":"glmr-pin__title"} /-->
-						<!-- wp:group {"className":"glmr-hero-meta","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"14px"}}} -->
-						<div class="wp-block-group glmr-hero-meta">
-							<!-- wp:post-terms {"term":"category","separator":"","className":"glmr-pin__term"} /-->
-							<!-- wp:paragraph {"className":"glmr-by","metadata":{"bindings":{"content":{"source":"glimmr/author-name","args":{"prefix":"by "}}}},"fontSize":"meta"} -->
-							<p class="glmr-by has-meta-font-size">by the photographer</p>
-							<!-- /wp:paragraph -->
-						</div>
-						<!-- /wp:group -->
+	<!-- wp:glimmr/featured-photo {"align":"full"} -->
+	<div class="wp-block-glimmr-featured-photo glmr-pin alignfull">
+		<!-- wp:cover {"useFeaturedImage":true,"dimRatio":40,"overlayColor":"ink","isDark":true,"minHeight":600,"minHeightUnit":"px","align":"full","className":"glmr-hero-cover","contentPosition":"bottom left","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"48px","left":"40px","right":"40px"}}}} -->
+		<div class="wp-block-cover alignfull is-dark has-custom-content-position is-position-bottom-left glmr-hero-cover" style="padding-top:var(--wp--preset--spacing--60);padding-right:40px;padding-bottom:48px;padding-left:40px;min-height:600px">
+			<span aria-hidden="true" class="wp-block-cover__background has-ink-background-color has-background-dim-40 has-background-dim"></span>
+			<div class="wp-block-cover__inner-container">
+				<!-- wp:group {"className":"glmr-pin__meta","layout":{"type":"constrained","contentSize":"1400px"}} -->
+				<div class="wp-block-group glmr-pin__meta">
+					<!-- wp:post-title {"isLink":true,"level":1,"fontSize":"xx-large","textColor":"white","className":"glmr-pin__title"} /-->
+					<!-- wp:group {"className":"glmr-hero-meta","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"14px"}}} -->
+					<div class="wp-block-group glmr-hero-meta">
+						<!-- wp:post-terms {"term":"category","separator":"","className":"glmr-pin__term"} /-->
+						<!-- wp:paragraph {"className":"glmr-by","metadata":{"bindings":{"content":{"source":"glimmr/author-name","args":{"prefix":"by "}}}},"fontSize":"meta"} -->
+						<p class="glmr-by has-meta-font-size">by the photographer</p>
+						<!-- /wp:paragraph -->
 					</div>
 					<!-- /wp:group -->
 				</div>
+				<!-- /wp:group -->
 			</div>
-			<!-- /wp:cover -->
-		<!-- /wp:post-template -->
-		<!-- wp:query-no-results -->
-			<!-- wp:group {"align":"full","className":"glmr-empty glmr-empty--upload glmr-pin-empty","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","contentSize":"480px"}} -->
-			<div class="wp-block-group alignfull glmr-empty glmr-empty--upload glmr-pin-empty" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
-				<!-- wp:paragraph {"align":"center","textColor":"muted","fontSize":"large"} -->
-				<p class="has-text-align-center has-muted-color has-text-color has-large-font-size">No featured photo yet.</p>
-				<!-- /wp:paragraph -->
-				<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-				<div class="wp-block-buttons"><!-- wp:button {"url":"/wp-admin/edit.php"} -->
-					<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/wp-admin/edit.php">Choose a sticky photo</a></div>
-				<!-- /wp:button --></div>
-				<!-- /wp:buttons -->
-			</div>
-			<!-- /wp:group -->
-		<!-- /wp:query-no-results -->
+		</div>
+		<!-- /wp:cover -->
 	</div>
-	<!-- /wp:query -->
+	<!-- /wp:glimmr/featured-photo -->
 
 	<!-- wp:group {"align":"wide","className":"glmr-section-head","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"baseline"}} -->
 	<div class="wp-block-group alignwide glmr-section-head">
@@ -54,7 +38,7 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:query {"queryId":1,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","sticky":"exclude","inherit":false},"align":"wide","className":"glmr-stream-wrap"} -->
+	<!-- wp:query {"queryId":1,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"align":"wide","className":"glmr-stream-wrap"} -->
 	<div class="wp-block-query glmr-stream-wrap alignwide">
 		<!-- wp:post-template {"className":"glmr-stream is-style-glimmr-masonry","layout":{"type":"grid","minimumColumnWidth":"240px"},"style":{"spacing":{"blockGap":"6px"}}} -->
 			<!-- wp:group {"className":"photo-tile","layout":{"type":"constrained"}} -->
