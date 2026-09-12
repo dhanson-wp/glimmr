@@ -267,9 +267,13 @@ html.has-modal-open:has(.wp-block-navigation__responsive-container.is-menu-open.
 	height: 10px;
 }
 
+/* Core gives the submenu z-index 2 inside the page's root stacking context, the same
+ * level as the hero cover's inner container (2) and the photo-tile stats (3). Lift
+ * the dropdown above every theme content layer so nothing paints over it. */
 .hdr .glmr-nav-albums .wp-block-navigation__submenu-container {
 	top: calc(100% + 8px);
 	left: -20px;
+	z-index: 10;
 	box-sizing: border-box;
 	width: 250px !important;
 	min-width: 250px !important;
