@@ -1521,6 +1521,150 @@ ul.glmr-chips {
 	font-weight: 400;
 }
 
+/* ---- Tags index: the typographic a-z ------------------------------------ */
+.glmr-tag-jump {
+	position: sticky;
+	top: 0;
+	z-index: 3;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	background: var(--wp--preset--color--mist);
+	border-top: 1px solid var(--wp--preset--color--hairline);
+	border-bottom: 1px solid var(--wp--preset--color--hairline);
+}
+
+.glmr-tag-jump a,
+.glmr-tag-jump span {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 30px;
+	height: 44px;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.glmr-tag-jump a {
+	color: var(--wp--preset--color--muted);
+	transition: color 0.15s var(--glmr-ease);
+}
+
+.glmr-tag-jump a:hover {
+	color: var(--wp--preset--color--pink);
+}
+
+.glmr-tag-jump a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--pink);
+	outline-offset: 3px;
+	border-radius: 3px;
+}
+
+/* Letters with nothing filed under them: present, but inert. */
+.glmr-tag-jump span {
+	color: #b4b9bc;
+}
+
+/* Grid baseline alignment drops the letter onto the first row's baseline,
+   whatever type step the largest tag on that row happens to be. */
+.glmr-tag-section {
+	display: grid;
+	grid-template-columns: 34px minmax(0, 1fr);
+	gap: 0 22px;
+	align-items: baseline;
+	scroll-margin-top: 62px;
+}
+
+.glmr-tag-letter {
+	margin: 0 !important;
+	font-size: 15px !important;
+	font-weight: 600;
+	line-height: 1;
+	text-transform: lowercase;
+}
+
+.glmr-tag-names {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	margin: 0 !important;
+	column-gap: 30px;
+	row-gap: 16px;
+}
+
+.glmr-tag {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 6px;
+	color: var(--wp--preset--color--fg);
+	letter-spacing: -0.015em;
+	line-height: 1;
+	text-decoration: none;
+	text-transform: lowercase;
+	transition: color 0.15s var(--glmr-ease);
+}
+
+/* Three steps, read from this site's own spread in PHP. */
+.glmr-tag--1 {
+	font-size: 19px;
+	font-weight: 400;
+}
+
+.glmr-tag--2 {
+	font-size: 28px;
+	font-weight: 400;
+}
+
+.glmr-tag--3 {
+	font-size: 40px;
+	font-weight: 300;
+}
+
+.glmr-tag .ct {
+	color: var(--wp--preset--color--muted);
+	font-size: 11px;
+	font-weight: 400;
+	letter-spacing: 0;
+}
+
+.glmr-tag:hover {
+	color: var(--wp--preset--color--pink);
+}
+
+.glmr-tag:hover .nm {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 5px;
+}
+
+.glmr-tag:hover .ct {
+	color: var(--wp--preset--color--fg);
+}
+
+.glmr-tag:focus-visible {
+	outline: 2px solid var(--wp--preset--color--pink);
+	outline-offset: 4px;
+	border-radius: 3px;
+	color: var(--wp--preset--color--fg);
+}
+
+/* Left-aligned under the title band, not centred in the column: the constrained
+   layout centres children with !important, so this has to answer in kind. */
+.glmr-tags-empty {
+	max-width: 540px;
+	margin-right: auto !important;
+	margin-left: 0 !important;
+	padding-inline: 16px;
+}
+
+.glmr-tags-empty p {
+	line-height: 1.55;
+}
+
 /* ---- Term archive hero -------------------------------------------------- */
 .glmr-archive-hero {
 	position: relative;
@@ -3623,6 +3767,41 @@ ul.glmr-chips {
 
 	.glmr-title-band h1 {
 		font-size: 30px !important;
+	}
+
+	.glmr-tag-section {
+		grid-template-columns: 20px minmax(0, 1fr);
+		gap: 0 14px;
+	}
+
+	.glmr-tag-letter {
+		font-size: 13px !important;
+	}
+
+	.glmr-tag-names {
+		column-gap: 20px;
+		row-gap: 12px;
+	}
+
+	.glmr-tag--1 {
+		font-size: 16px;
+	}
+
+	.glmr-tag--2 {
+		font-size: 22px;
+	}
+
+	.glmr-tag--3 {
+		font-size: 30px;
+	}
+
+	/* Fourteen to a row lands the alphabet on exactly two rows, with or
+	   without the '#' bucket, instead of leaving a stray third row. */
+	.glmr-tag-jump a,
+	.glmr-tag-jump span {
+		flex: 0 0 calc(100% / 14);
+		min-width: 0;
+		font-size: 12px;
 	}
 
 		.glmr-page {

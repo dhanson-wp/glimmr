@@ -417,23 +417,329 @@ function glimmr_render_albums_index_pattern() {
 }
 
 /**
+ * Return the live post tags for the Tags index, alphabetically.
+ *
+ * @return WP_Term[]
+ */
+function glimmr_get_tag_index_terms() {
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'post_tag',
+			'hide_empty' => true,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		)
+	);
+
+	if ( is_wp_error( $terms ) || empty( $terms ) ) {
+		return array();
+	}
+
+	return $terms;
+}
+
+/**
+ * Work out the two count thresholds that split the index into three type steps.
+ *
+ * The steps are read from this site's own spread rather than from fixed counts,
+ * the way core/tag-cloud scales between its smallest and largest font size. A
+ * fixed rule that works at thirty tags collapses at a hundred and sixty, where
+ * most of the archive would end up on the largest step.
+ *
+ * @param WP_Term[] $terms Tag terms.
+ * @return int[] Keyed 'large' and 'medium'.
+ */
+function glimmr_get_tag_index_thresholds( array $terms ) {
+	$counts = array();
+	foreach ( $terms as $term ) {
+		if ( $term instanceof WP_Term ) {
+			$counts[] = (int) $term->count;
+		}
+	}
+
+	$total = count( $counts );
+	if ( 0 === $total ) {
+		return array(
+			'large'  => PHP_INT_MAX,
+			'medium' => PHP_INT_MAX,
+		);
+	}
+
+	rsort( $counts, SORT_NUMERIC );
+
+	// A flat inventory has nothing to weight, so every tag sits on the middle step.
+	if ( $counts[0] === $counts[ $total - 1 ] ) {
+		return array(
+			'large'  => PHP_INT_MAX,
+			'medium' => 0,
+		);
+	}
+
+	$large  = $counts[ min( $total - 1, (int) floor( $total * 0.12 ) ) ];
+	$medium = $counts[ min( $total - 1, (int) floor( $total * 0.45 ) ) ];
+
+	return array(
+		'large'  => $large,
+		'medium' => min( $medium, $large ),
+	);
+}
+
+/**
+ * Which of the three type steps a tag count lands on.
+ *
+ * @param int   $count      Photo count for the tag.
+ * @param int[] $thresholds Output of glimmr_get_tag_index_thresholds().
+ * @return int 1, 2 or 3.
+ */
+function glimmr_get_tag_index_step( $count, array $thresholds ) {
+	$count = (int) $count;
+
+	if ( $count >= $thresholds['large'] ) {
+		return 3;
+	}
+
+	if ( $count >= $thresholds['medium'] ) {
+		return 2;
+	}
+
+	return 1;
+}
+
+/**
+ * The letter a tag name files under in the index.
+ *
+ * @param string $name Tag name.
+ * @return string A single a-z letter, or '#' for digits and symbols.
+ */
+function glimmr_get_tag_index_letter( $name ) {
+	$plain = remove_accents( (string) $name );
+	$first = strtolower( substr( trim( $plain ), 0, 1 ) );
+
+	return preg_match( '/^[a-z]$/', $first ) ? $first : '#';
+}
+
+/**
+ * The anchor id for a letter section.
+ *
+ * @param string $letter Letter key.
+ * @return string
+ */
+function glimmr_get_tag_index_anchor( $letter ) {
+	return 'tags-' . ( '#' === $letter ? 'other' : $letter );
+}
+
+/**
+ * Group index terms by letter, in the order they are rendered.
+ *
+ * @param WP_Term[] $terms Tag terms, already sorted by name.
+ * @return array<string, WP_Term[]>
+ */
+function glimmr_group_tag_index_terms( array $terms ) {
+	$groups = array();
+
+	foreach ( $terms as $term ) {
+		if ( ! $term instanceof WP_Term ) {
+			continue;
+		}
+
+		$letter = glimmr_get_tag_index_letter( $term->name );
+		if ( ! isset( $groups[ $letter ] ) ) {
+			$groups[ $letter ] = array();
+		}
+
+		$groups[ $letter ][] = $term;
+	}
+
+	// Names starting with a digit or symbol sort first, but they read last.
+	if ( isset( $groups['#'] ) ) {
+		$other = $groups['#'];
+		unset( $groups['#'] );
+		$groups['#'] = $other;
+	}
+
+	return $groups;
+}
+
+/**
+ * Build the sticky a-z jump bar.
+ *
+ * Letters with no tags stay visible but inert, so the bar keeps its shape as
+ * the archive grows instead of reflowing every time a letter is first used.
+ *
+ * @param array<string, WP_Term[]> $groups Grouped index terms.
+ * @return string
+ */
+function glimmr_render_tag_index_jump_bar( array $groups ) {
+	$letters = str_split( 'abcdefghijklmnopqrstuvwxyz' );
+	if ( isset( $groups['#'] ) ) {
+		$letters[] = '#';
+	}
+
+	$items = '';
+	foreach ( $letters as $letter ) {
+		if ( isset( $groups[ $letter ] ) ) {
+			$items .= sprintf(
+				'<a href="#%1$s">%2$s</a>',
+				esc_attr( glimmr_get_tag_index_anchor( $letter ) ),
+				esc_html( $letter )
+			);
+		} else {
+			$items .= sprintf( '<span aria-hidden="true">%s</span>', esc_html( $letter ) );
+		}
+	}
+
+	return sprintf(
+		'<nav class="glmr-tag-jump" aria-label="%1$s">%2$s</nav>',
+		esc_attr__( 'Jump to a letter', 'glimmr' ),
+		$items
+	);
+}
+
+/**
+ * Render one tag name as a weighted index link.
+ *
+ * @param WP_Term $term       Tag term.
+ * @param int[]   $thresholds Output of glimmr_get_tag_index_thresholds().
+ * @return string Empty string when the term has no resolvable archive link.
+ */
+function glimmr_render_tag_index_link( WP_Term $term, array $thresholds ) {
+	$url = get_term_link( $term );
+	if ( is_wp_error( $url ) ) {
+		return '';
+	}
+
+	$count       = (int) $term->count;
+	$count_label = sprintf(
+		/* translators: %s: Number of photos carrying a tag. */
+		_n( '%s photo', '%s photos', $count, 'glimmr' ),
+		number_format_i18n( $count )
+	);
+
+	return sprintf(
+		'<a class="glmr-tag glmr-tag--%1$d" href="%2$s" aria-label="%3$s"><span class="nm">%4$s</span><span class="ct" aria-hidden="true">%5$s</span></a>',
+		glimmr_get_tag_index_step( $count, $thresholds ),
+		esc_url( $url ),
+		esc_attr(
+			sprintf(
+				/* translators: 1: Tag name. 2: Photo count phrase such as "5 photos". */
+				__( '%1$s, %2$s', 'glimmr' ),
+				$term->name,
+				$count_label
+			)
+		),
+		esc_html( $term->name ),
+		esc_html( number_format_i18n( $count ) )
+	);
+}
+
+/**
+ * Render the complete Tags index pattern from the live tag archive.
+ *
+ * @return string
+ */
+function glimmr_render_tags_index_pattern() {
+	$glimmr_terms = glimmr_get_tag_index_terms();
+
+	ob_start();
+
+	if ( empty( $glimmr_terms ) ) {
+		?>
+<!-- wp:group {"className":"glmr-tags-empty","style":{"spacing":{"blockGap":"24px","padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group glmr-tags-empty" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--60)">
+	<!-- wp:paragraph {"fontSize":"large","textColor":"muted"} -->
+	<p class="has-muted-color has-text-color has-large-font-size"><?php esc_html_e( 'No tags yet. They show up here as soon as you add one to a photo.', 'glimmr' ); ?></p>
+	<!-- /wp:paragraph -->
+		<?php if ( current_user_can( 'upload_files' ) ) : ?>
+	<!-- wp:buttons {"className":"glmr-tags-empty__cta"} -->
+	<div class="wp-block-buttons glmr-tags-empty__cta">
+		<!-- wp:button {"backgroundColor":"pink-action","textColor":"white"} -->
+		<div class="wp-block-button"><a class="wp-block-button__link has-white-color has-pink-action-background-color has-text-color has-background wp-element-button" href="<?php echo esc_url( admin_url( 'post-new.php' ) ); ?>"><?php esc_html_e( 'Upload photos', 'glimmr' ); ?></a></div>
+		<!-- /wp:button -->
+	</div>
+	<!-- /wp:buttons -->
+		<?php endif; ?>
+</div>
+<!-- /wp:group -->
+		<?php
+		return trim( ob_get_clean() );
+	}
+
+	$glimmr_groups     = glimmr_group_tag_index_terms( $glimmr_terms );
+	$glimmr_thresholds = glimmr_get_tag_index_thresholds( $glimmr_terms );
+	?>
+<!-- wp:group {"className":"glmr-tag-index-body","style":{"spacing":{"blockGap":"0","padding":{"bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group glmr-tag-index-body" style="padding-bottom:var(--wp--preset--spacing--50)">
+	<!-- wp:html -->
+	<?php echo glimmr_render_tag_index_jump_bar( $glimmr_groups ); // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- Escaped when built. ?>
+	<!-- /wp:html -->
+
+	<!-- wp:group {"className":"glmr-tag-sections","style":{"spacing":{"blockGap":"26px","margin":{"top":"34px"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group glmr-tag-sections" style="margin-top:34px">
+		<?php
+		foreach ( $glimmr_groups as $glimmr_letter => $glimmr_letter_terms ) :
+			$glimmr_names = '';
+			foreach ( $glimmr_letter_terms as $glimmr_term ) {
+				$glimmr_names .= glimmr_render_tag_index_link( $glimmr_term, $glimmr_thresholds );
+			}
+
+			if ( '' === $glimmr_names ) {
+				continue;
+			}
+
+			$glimmr_anchor = glimmr_get_tag_index_anchor( $glimmr_letter );
+			?>
+		<!-- wp:group {"className":"glmr-tag-section","anchor":"<?php echo esc_attr( $glimmr_anchor ); ?>","layout":{"type":"default"}} -->
+		<div class="wp-block-group glmr-tag-section" id="<?php echo esc_attr( $glimmr_anchor ); ?>">
+			<!-- wp:heading {"level":2,"className":"glmr-tag-letter","fontSize":"meta","textColor":"muted"} -->
+			<h2 class="wp-block-heading glmr-tag-letter has-muted-color has-text-color has-meta-font-size"><?php echo esc_html( $glimmr_letter ); ?></h2>
+			<!-- /wp:heading -->
+			<!-- wp:paragraph {"className":"glmr-tag-names"} -->
+			<p class="glmr-tag-names"><?php echo $glimmr_names; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- Escaped when built. ?></p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+			<?php
+		endforeach;
+		?>
+	</div>
+	<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+	<?php
+	return trim( ob_get_clean() );
+}
+
+/**
  * Register dynamic theme-owned patterns that need current site data.
  */
 function glimmr_register_dynamic_patterns() {
-	if ( WP_Block_Patterns_Registry::get_instance()->is_registered( 'glimmr/albums-index' ) ) {
-		return;
+	$registry = WP_Block_Patterns_Registry::get_instance();
+
+	if ( ! $registry->is_registered( 'glimmr/albums-index' ) ) {
+		register_block_pattern(
+			'glimmr/albums-index',
+			array(
+				'title'       => __( 'Albums index', 'glimmr' ),
+				'categories'  => array( 'glimmr-photo', 'gallery' ),
+				'description' => __( 'A complete index of every non-empty album/category.', 'glimmr' ),
+				'inserter'    => false,
+				'content'     => glimmr_render_albums_index_pattern(),
+			)
+		);
 	}
 
-	register_block_pattern(
-		'glimmr/albums-index',
-		array(
-			'title'       => __( 'Albums index', 'glimmr' ),
-			'categories'  => array( 'glimmr-photo', 'gallery' ),
-			'description' => __( 'A complete index of every non-empty album/category.', 'glimmr' ),
-			'inserter'    => false,
-			'content'     => glimmr_render_albums_index_pattern(),
-		)
-	);
+	if ( ! $registry->is_registered( 'glimmr/tags-index' ) ) {
+		register_block_pattern(
+			'glimmr/tags-index',
+			array(
+				'title'       => __( 'Tags index', 'glimmr' ),
+				'categories'  => array( 'glimmr-photo' ),
+				'description' => __( 'An alphabetical index of every tag in use, weighted by photo count.', 'glimmr' ),
+				'inserter'    => false,
+				'content'     => glimmr_render_tags_index_pattern(),
+			)
+		);
+	}
 }
 add_action( 'init', 'glimmr_register_dynamic_patterns', 11 );
 

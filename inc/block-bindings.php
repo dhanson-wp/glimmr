@@ -17,6 +17,8 @@
  *     core/paragraph content on the search template.
  *   - glimmr/photo-count : the total published photo count, bound to
  *     core/paragraph content in global template readouts.
+ *   - glimmr/tag-index-count : "30 tags · 168 photos" for the Tags index
+ *     title band.
  *   - glimmr/author-photo-count : the current post author's published photo
  *     count, bound to the single-photo author byline.
  *   - glimmr/comment-count-title : the current post's public comment count,
@@ -79,6 +81,14 @@ function glimmr_register_binding_sources() {
 		array(
 			'label'              => __( 'Published photo count (Glimmr)', 'glimmr' ),
 			'get_value_callback' => 'glimmr_photo_count_binding',
+		)
+	);
+
+	register_block_bindings_source(
+		'glimmr/tag-index-count',
+		array(
+			'label'              => __( 'Tag and photo count (Glimmr)', 'glimmr' ),
+			'get_value_callback' => 'glimmr_tag_index_count_binding',
 		)
 	);
 
@@ -319,6 +329,42 @@ function glimmr_photo_count_binding( $source_args = array() ) {
 	}
 
 	return $copy;
+}
+
+/**
+ * Tag and photo totals for the Tags index title band.
+ *
+ * Reads "30 tags · 168 photos". The tag half counts only tags actually in use,
+ * which is the same set the index below it renders.
+ *
+ * @return string
+ */
+function glimmr_tag_index_count_binding() {
+	$tags = wp_count_terms(
+		array(
+			'taxonomy'   => 'post_tag',
+			'hide_empty' => true,
+		)
+	);
+	$tags = is_wp_error( $tags ) ? 0 : (int) $tags;
+
+	$photos = wp_count_posts( 'post' );
+	$photos = isset( $photos->publish ) ? (int) $photos->publish : 0;
+
+	return sprintf(
+		/* translators: 1: Tag count phrase such as "30 tags". 2: Photo count phrase such as "168 photos". */
+		__( '%1$s · %2$s', 'glimmr' ),
+		sprintf(
+			/* translators: %s: Number of tags in use. */
+			_n( '%s tag', '%s tags', $tags, 'glimmr' ),
+			number_format_i18n( $tags )
+		),
+		sprintf(
+			/* translators: %s: Number of published photos. */
+			_n( '%s photo', '%s photos', $photos, 'glimmr' ),
+			number_format_i18n( $photos )
+		)
+	);
 }
 
 /**
