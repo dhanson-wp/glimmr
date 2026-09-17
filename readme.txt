@@ -3,7 +3,7 @@ Contributors: derekhanson
 Requires at least: 6.9
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,13 @@ Switch in Appearance → Editor → Styles:
 Edit Category / Edit Tag gains a "Featured image" control (a media picker storing an attachment id as term meta). That image becomes the term archive's cover hero, surfaced through the `glimmr/term-image` binding source and a scoped cover render filter.
 
 == Changelog ==
+
+= 1.1.0 =
+* The Tags page is now an alphabetical index instead of one row of chips. Tag names are sized by how many photos carry them, so the tags you actually use are the ones that stand out.
+* A sticky a-z bar sits above the index and jumps straight to a letter, so the page still works once you have a hundred tags or more.
+* The Tags title band reads "12 tags · 240 photos" instead of the photo count on its own.
+* A site with no tags yet gets one calm sentence and an Upload photos button rather than an empty page. The button only shows to people who can upload.
+* The Albums dropdown no longer paints behind the archive hero on a category with no featured image.
 
 = 1.0.0 =
 * Initial release.

@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GLIMMR_VERSION', '1.0.0' );
+define( 'GLIMMR_VERSION', '1.1.0' );
 define( 'GLIMMR_DIR', get_template_directory() );
 
 /**
